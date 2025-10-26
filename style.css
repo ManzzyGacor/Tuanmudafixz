@@ -1,0 +1,301 @@
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --primary-blue: #007bff;
+    --primary-blue-dark: #0056b3;
+    --text-light: #ffffff;
+    --text-dark: #333;
+    --bg-glass: rgba(255, 255, 255, 0.15);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+}
+
+body {
+    background-image: url('https://raw.githubusercontent.com/Bell575/dat1/main/uploads/c1d89c-1761454037237.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--text-light);
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 0px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.description {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background-color: var(--primary-blue-dark);
+    transform: translateY(-2px);
+}
+
+.btn svg {
+    flex-shrink: 0;
+}
+
+/* --- PERUBAHAN DI SINI --- */
+/* CSS untuk Notifikasi Toast (Menggantikan Modal Selamat Datang) */
+.toast-notification {
+    position: fixed;
+    top: -150px; /* Mulai dari luar layar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 450px;
+    
+    /* Efek transparan "glassmorphism" ala iOS */
+    background: rgba(40, 40, 40, 0.75); /* Hitam transparan */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    color: var(--text-light); /* Teks warna putih */
+    border-radius: 20px; /* Sangat rounded */
+    padding: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    z-index: 2000;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Animasi "smooth" */
+    opacity: 0;
+    transition: top 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* State saat notifikasi muncul */
+.toast-notification.show {
+    top: 20px; /* Posisi akhir di atas */
+    opacity: 1;
+}
+
+/* State saat notifikasi hilang */
+.toast-notification.hide {
+    top: -150px; /* Kembali ke atas */
+    opacity: 0;
+}
+
+.toast-content h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.toast-content p {
+    font-size: 0.9em;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.toast-close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2em;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 15px;
+    transition: background-color 0.2s;
+}
+
+.toast-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+/* --- AKHIR PERUBAHAN --- */
+
+
+/* CSS untuk Modal Payment (Tidak Berubah) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    color: var(--text-dark);
+    margin: auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.close-btn {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #333;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-top: 0;
+    color: var(--primary-blue);
+}
+
+.payment-option {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.payment-option h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.payment-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.payment-details span {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #555;
+    word-break: break-all;
+}
+
+.copy-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.copy-btn:hover {
+    background: var(--primary-blue-dark);
+}
+
+.note {
+    font-size: 0.9em;
+    color: #777;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.payment-note {
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.qris-image {
+    display: block;
+    width: 250px;
+    max-width: 100%;
+    margin: 10px auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
